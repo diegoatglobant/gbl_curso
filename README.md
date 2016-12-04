@@ -1,0 +1,2 @@
+# gbl_curso
+Practicas
