@@ -31,42 +31,38 @@ if __name__ == "__main__":
     # #print repr(e1)
 
 
-
-
-
-    # Diferencia entre un Set y otro Set.
     e1 = conjuntos.EmuladorSets([5,4,3, 8, 9])
     e2 = conjuntos.EmuladorSets([1,4,3])
 
+
+    # Diferencia entre un Set y otro Set.
     diff = conjuntos.diferencias_entre_sets(e1,e2)
     print "Diff: " + repr(diff)
 
 
 
     # Intersección entre un Set y otro Set.
-    #print repr(e3)
     interseccion = conjuntos.intersecciones_entre_sets(e1, e2)
     print "Interseccion: " + repr(interseccion)
 
 
+
     # Un método que determine si un Set está incluído en otro Set.
-    # print repr(e3)
     validacion = conjuntos.validacion_elementos_entre_sets(list(e1), list(e1))
     print "Esta un set en otro? " +  repr(validacion)
+
     validacion = conjuntos.validacion_elementos_entre_sets(list(e1), list(e2))
     print "Esta un set en otro? " + repr(validacion)
 
+
+
     # Diferencia simétrica entre un Set y otro Set.
-
-
-    # ['diego', 8, 'practica', 7,  "este no es en el primero"]
-
     simetria = conjuntos.diferencia_simetrica(e1, e2)
     print "Simetria: " + repr(simetria)
 
 
-    # Potencia de Conjuntos
 
+    # Potencia de Conjuntos
     potencia = conjuntos.conjunto_potencia(e1)
     print repr(potencia)
 
