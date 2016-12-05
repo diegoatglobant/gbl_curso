@@ -4,7 +4,7 @@ Practicas de curso de Python
 
 
 # Clase 1
--------
+  
 ### Emular Sets
 Crear una clase para representar y manipular un Set (conjunto). La clase Set debe proveer las siguientes operaciones:
 
