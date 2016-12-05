@@ -69,7 +69,7 @@ if __name__ == "__main__":
     print "Simetria: " + repr(simetria)
 
 
-    # Producto cartesiano entre un Set y otro Set.
+    # Potencia de Conjuntos 
 
     e10 = conjuntos.EmuladorSets([1,2,3])
     potencia = conjuntos.conjunto_potencia(e10)
