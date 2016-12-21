@@ -2,15 +2,9 @@
 #!/usr/bin/env python
 __author__ = 'Diego Linayo'
 
-
-
 import os
 
-path_to_walk = '/home/diego/Documents/txt/';
-
-
-
-def arbol(path ):
+def arbol(path , nivel= 0 ):
 
     # Contadores para poder tabular segun directorio
     total_archivos = 0
@@ -21,21 +15,27 @@ def arbol(path ):
         (os.path.join(path, filename) for filename in os.listdir(path)),
         key=lambda s: s.lower()
     )
+    if nivel is not 0:
+        nivel_tab = "|" + "\t" * nivel + "|--- "
+    else:
+        nivel_tab = "\t" * nivel + "|--- "
 
-    #print map(lambda item: item+"\n", files)
+
     for item in files:
         if os.path.isdir(item):
             total_directorios += 1
-            print('\x1b[6;30;42m %s \x1b[0m') %item
-            arbol(item)
+            #print nivel_tab +  ('\x1b[6;30;42m %s \x1b[0m') % os.path.basename(item) + "- " + item + "Nivel " + str(nivel)
+            print nivel_tab +  ('\x1b[6;30;42m %s \x1b[0m') % os.path.basename(item)
+            #print "\t" +  "Total Archivos %d total Dirs %d" % (total_archivos, total_directorios)
+            arbol(item, nivel + 1)
         else:
             total_archivos += 1
-            print item
+            print nivel_tab + ""+ os.path.basename(item)
 
-    print "Total Archivos %d total Dirs %d" % (total_archivos, total_directorios)
 
 
 if __name__ == "__main__":
+    path_to_walk = '/home/diego/Documents/txt/';
     arbol(path_to_walk)
 
 
