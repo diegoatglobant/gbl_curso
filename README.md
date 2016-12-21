@@ -3,7 +3,7 @@ Practicas de curso de Python
 
 
 
-# Clase 1
+# Clase 1 #
   
 ### Emular Sets
 Crear una clase para representar y manipular un Set (conjunto). La clase Set debe proveer las siguientes operaciones:
@@ -69,3 +69,26 @@ Matrix([[1,2,3,4,5,6],
 
 Referencia de Cálculo Matricial:
 http://matematicasbachiller.com/videos/2-bachillerato/introduccion-al-algebra-de-lo-lineal/01-calculo-matricial-6
+
+
+
+# Comando Tree #
+ver clase2.py  
+
+Sistema de archivos: Implementar el comando tree
+El comando tree muestra la estructura de carpetas con una estructura de árbol partiendo de la carpeta donde se ejecuta el comando e incluyendo todos los archivos, subcarpetas, archivos y carpetas en las subcarpetas y continúa recursivamente.
+
+A continuación se puede ver un ejemplo de salida de la ejecución de un comando tree.
+
+.  
+├── config.dat  
+├── data  
+│   ├── data1.bin  
+│   ├── data2.sql  
+│   └── data3.inf  
+├── images  
+│   ├── background.jpg  
+│   ├── icon.gif  
+│   └── logo.jpg  
+├── program.exe  
+└── readme.txt  
