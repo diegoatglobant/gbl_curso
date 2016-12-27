@@ -7,62 +7,51 @@ from practicas.clase1 import conjuntos
 
 if __name__ == "__main__":
     # Agregar un elemento al Set.
-    # Remover un elemento del Set
 
-    # e1 = conjuntos.EmuladorSets()
-    # print e1
-    # print repr(e1)
-    # e1.insertar_item(1)
-    # e1.insertar_item(1)
-    # e1.insertar_item(2)
-    # e1.insertar_item(2)
-    # e1.quitar_item(1)
-    # print repr(e1)
-    # e1.insertar_item(1)
-    # e1.insertar_item(2)
-    # e1.insertar_item(6)
-    # print "E1 " + repr(e1)
-    #
-    # e2 = conjuntos.EmuladorSets()
-    # for elemento in range(0,4):
-    #     e2.insertar_item(elemento)
-    # print "E2" + repr(e2)
-    #
-    # #print repr(e1)
+    e1 = conjuntos.EmuladorSets()
+    e1.insertar_item("a")
+    e1.insertar_item("b")
+    e1.insertar_item("c")
+    e1.insertar_item("d")
+
+    e2 = conjuntos.EmuladorSets()
+    e2.insertar_item("d")
+    e2.insertar_item("e")
+    e2.insertar_item("f")
+    e2.insertar_item("g")
 
 
-    e1 = conjuntos.EmuladorSets([5,4,3, 8, 9])
-    e2 = conjuntos.EmuladorSets([1,4,3])
-
+    e3 = conjuntos.EmuladorSets(['a','b'])
 
     # Diferencia entre un Set y otro Set.
-    diff = conjuntos.diferencias_entre_sets(e1,e2)
+    diff = conjuntos.EmuladorSets.diferencias_entre_sets(e1,e2)
     print "Diff: " + repr(diff)
 
 
-
     # Intersección entre un Set y otro Set.
-    interseccion = conjuntos.intersecciones_entre_sets(e1, e2)
+    interseccion = conjuntos.EmuladorSets.intersecciones_entre_sets(e1, e2)
     print "Interseccion: " + repr(interseccion)
 
 
 
     # Un método que determine si un Set está incluído en otro Set.
-    validacion = conjuntos.validacion_elementos_entre_sets(list(e1), list(e1))
+    validacion = conjuntos.EmuladorSets.comparar_inclusion_entre_sets(e1, e1)
     print "Esta un set en otro? " +  repr(validacion)
 
-    validacion = conjuntos.validacion_elementos_entre_sets(list(e1), list(e2))
+    validacion = conjuntos.EmuladorSets.comparar_inclusion_entre_sets(e2, e3)
     print "Esta un set en otro? " + repr(validacion)
 
 
 
     # Diferencia simétrica entre un Set y otro Set.
-    simetria = conjuntos.diferencia_simetrica(e1, e2)
-    print "Simetria: " + repr(simetria)
+    simetria = conjuntos.EmuladorSets.diferencia_simetrica(e1, e2)
+    print "Diff Simetrica: " + repr(simetria)
 
-
+    #Producto cartesiano entre un Set y otro Set.
+    producto_cartesiano = conjuntos.EmuladorSets.producto_cartesiano(e1,e2)
+    print "Producto Cartesiano: " + str(list(producto_cartesiano))
 
     # Potencia de Conjuntos
-    potencia = conjuntos.conjunto_potencia(e1)
-    print repr(potencia)
+    #potencias = conjuntos.conjunto_potencia()
+
 
