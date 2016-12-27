@@ -85,7 +85,3 @@ class EmuladorSets:
 
         return potencia
 
-if __name__ == "__main__":
-    e1 = EmuladorSets([1,2,3])
-    e2 = EmuladorSets([1,4,3])
-    e1.producto_cartesiano(e1,e2)
