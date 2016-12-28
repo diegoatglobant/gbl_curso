@@ -20,6 +20,13 @@ class Matrices:
         return self._items[key]
 
 
+    def __str__(self):
+        r = ''
+        for filas in self.getItems():
+            r += str(map( lambda x: '{:4d}'.format(x),  filas  ) ) + "\n"
+        return str(r)
+
+
     def suma(self, M, N):
         for index,value in enumerate(M):
             self.insertar_item(map(sum, zip(M.getItems()[index], N.getItems()[index])))
@@ -36,6 +43,11 @@ class Matrices:
 		return Matrices(list(sum(a*b for a,b in zip(m1_filas,m2_columnas)) for m2_columnas in zip(*m2.getItems()) for m1_filas in m1.getItems()))
 
 
+    def matriz_transpuesta(self):
+        return Matrices([[ self.getItems()[x][y] for x in range(len(self.getItems()))] for y in range(len(self.getItems()[0]))])
+
+
+
 if __name__ == "__main__":
     m1 = Matrices([10,20,30] , [1,1,1], [1,1,1])
     m2 = Matrices([4,3,4], [4,4,4], [1,1,1])
@@ -49,3 +61,9 @@ if __name__ == "__main__":
 
     result = m3.multiplicar(m1,m2)
     print repr(result)
+
+    transpuesta = m1.matriz_transpuesta()
+    print repr(transpuesta)
+
+    #print "Imprimir en forma de Matriz"
+    print m1
