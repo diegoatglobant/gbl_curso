@@ -5,7 +5,7 @@ __author__ = 'Diego Linayo'
 from practicas.clase1 import EmuladorSets,Matrices
 
 
-if __name__ == "__main__":
+def pruebas_conjuntos():
     # Agregar un elemento al Set.
 
     e1 = EmuladorSets()
@@ -53,5 +53,37 @@ if __name__ == "__main__":
 
     # Potencia de Conjuntos
     #potencias = conjuntos.conjunto_potencia()
+
+
+def pruebas_matrices():
+    m1 = Matrices([10,20,30] , [1,1,1], [1,1,1])
+    m2 = Matrices([4,3,4], [4,4,4], [1,1,1])
+
+    m3 = Matrices()
+    m3.suma(m1 , m2)
+    print repr(m3)
+
+    producto_escalar = m3.producto_escalar(2)
+    print repr(producto_escalar)
+
+    result = m3.multiplicar(m1,m2)
+    print repr(result)
+
+    transpuesta = m1.matriz_transpuesta()
+    print repr(transpuesta)
+
+    #print "Imprimir en forma de Matriz"
+    print m1
+
+
+if __name__ == "__main__":
+    # Diferencia entre un Set y otro Set.
+
+    opcion = raw_input("Ingresa 1 para Conjuntos y 2 Para Matrices: ")
+
+    if opcion == 1:
+        pruebas_conjuntos()
+    else:
+        pruebas_matrices()
 
 
