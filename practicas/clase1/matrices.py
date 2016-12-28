@@ -49,9 +49,8 @@ class Matrices:
     def obtener_filas(self, matriz, indices_filas):
         return list([m1_filas]for i, m1_filas in enumerate(matriz.getItems()) if i in indices_filas)
 
-    def obtener_columnas(self, matriz):
-        pass
-        #return Matrices(for m1_filas in matriz.getItems())
+    def obtener_columnas(self, matriz, indice):
+        return [zip(*matriz.getItems())[i]for i in indice]
 
 
 if __name__ == "__main__":
@@ -75,5 +74,9 @@ if __name__ == "__main__":
     print m1
 
 
-    filas = m1.obtener_filas(m1, [6,7,0])
-    print "filas" + str(filas)
+    filas = m1.obtener_filas(m1, [0])
+    print "filas: " + str(filas)
+
+
+    cols = m1.obtener_columnas(m1, [1, 0]) 
+    print "columnas: " + str(cols)
