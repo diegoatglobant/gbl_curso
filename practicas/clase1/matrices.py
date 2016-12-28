@@ -31,13 +31,9 @@ class Matrices:
 
         return result
 
-    def multiply(self, *args):
-        print "ll" + str(args)
-        return args
 
-    def multiplicar(self, M, N):
-        for index,value in enumerate(M):
-            self.insertar_item(map(self.multiply, zip(M.getItems()[index], N.getItems()[index])))
+    def multiplicar(self, m1, m2):
+		return Matrices(list(sum(a*b for a,b in zip(m1_filas,m2_columnas)) for m2_columnas in zip(*m2.getItems()) for m1_filas in m1.getItems()))
 
 
 if __name__ == "__main__":
@@ -51,4 +47,5 @@ if __name__ == "__main__":
     producto_escalar = m3.producto_escalar(2)
     print repr(producto_escalar)
 
-    m3.multiplicar(m1,m2)
+    result = m3.multiplicar(m1,m2)
+    print repr(result)
