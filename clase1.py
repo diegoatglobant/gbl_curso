@@ -77,7 +77,6 @@ def pruebas_matrices():
 
 
 if __name__ == "__main__":
-    # Diferencia entre un Set y otro Set.
 
     opcion = raw_input("Ingresa 1 para Conjuntos y 2 Para Matrices: ")
 
