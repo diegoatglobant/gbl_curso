@@ -46,6 +46,12 @@ class Matrices:
     def matriz_transpuesta(self):
         return Matrices([[ self.getItems()[x][y] for x in range(len(self.getItems()))] for y in range(len(self.getItems()[0]))])
 
+    def obtener_filas(self, matriz, indices_filas):
+        return list([m1_filas]for i, m1_filas in enumerate(matriz.getItems()) if i in indices_filas)
+
+    def obtener_columnas(self, matriz):
+        pass
+        #return Matrices(for m1_filas in matriz.getItems())
 
 
 if __name__ == "__main__":
@@ -67,3 +73,7 @@ if __name__ == "__main__":
 
     #print "Imprimir en forma de Matriz"
     print m1
+
+
+    filas = m1.obtener_filas(m1, [6,7,0])
+    print "filas" + str(filas)
