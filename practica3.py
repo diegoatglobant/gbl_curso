@@ -23,8 +23,6 @@ class LectoPelis():
             listado = csv.DictReader(fp)
             for registro in listado:
                 yield registro
-                #print "Inside" + registro['director_name']
-                #print registro['director_name']
 
 
 
