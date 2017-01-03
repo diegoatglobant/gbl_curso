@@ -48,6 +48,28 @@ class Procesador():
         print repr(self.reporte)
 
 
+class ClassBasedDecorator(object):
+
+    def __init__(cls, func_to_decorate):
+        print "INIT ClassBasedDecorator"
+        cls.func_to_decorate = func_to_decorate
+
+    def __call__(cls, *args, **kwargs):
+        print "CALL ClassBasedDecorator"
+        print args
+        return cls.func_to_decorate(object)
+
+
+class calcularData:
+
+  def __init__(self):
+      pass
+
+  def __call__(self,function):
+    def wrapper(self,*args,**kwargs):
+        data,slice_i,slice_e =  function(self)
+        return sorted(data.iteritems(), key=lambda (k,v): (v,k))[slice_i:slice_e]
+    return wrapper
 
 
 class Reporte():
@@ -56,13 +78,10 @@ class Reporte():
     contador_color = 0
     contador_bn = 0
     contador_vacio = 0
-
     directores = {}
-
     criticas = {}
     duracion = {}
     recaudacion = {}
-
     presupuesto = {}
     producciones_anuales = {}
 
@@ -96,30 +115,30 @@ class Reporte():
         if registro['movie_title'] != '' and registro['num_critic_for_reviews'] != '':
             self.criticas[registro['movie_title'].replace('\xc2\xa0', '')] = registro['num_critic_for_reviews']
 
-
+    @calcularData()
     def get_criticas(self):
-        return sorted(self.criticas.iteritems(), key=lambda (k,v): (v,k))[:10]
+        return self.criticas,None, 10
 
 
     def update_duracion(self, registro):
         if registro['movie_title'] != '' and registro['duration'] > 0 and registro['duration'] != '':
             self.duracion[registro['movie_title'].replace('\xc2\xa0', '').strip()] = int(registro['duration'])
 
-
+    @calcularData()
     def get_mayor_duracion(self):
-        return sorted(self.duracion.items(), key=(lambda x: x[1]))[-20:]
+        return self.duracion, -20, None
 
     def update_recaudacion(self, registro):
         if registro['movie_title'] != '' and registro['gross'] > 0 and registro['gross'] != '':
             self.recaudacion[registro['movie_title'].replace('\xc2\xa0', '').strip()] = int(registro['gross'])
 
-
-
+    @calcularData()
     def get_mayor_recaudacion(self):
-        return sorted(self.recaudacion.items(), key=(lambda x: x[1]))[-5:]
+        return self.recaudacion, -5, None
 
+    @calcularData()
     def get_menor_recaudacion(self):
-        return sorted(self.recaudacion.items(), key=(lambda x: x[1]))[:5]
+        return self.recaudacion , None, 5
 
 
 
@@ -128,11 +147,13 @@ class Reporte():
             self.presupuesto[registro['movie_title'].replace('\xc2\xa0', '').strip()] = int(registro['budget'])
 
 
+    @calcularData()
     def get_mayor_presupuesto(self):
-        return sorted(self.presupuesto.items(), key=(lambda x: x[1]))[-3:]
+        return self.presupuesto, -3, None
 
+    @calcularData()
     def get_menor_presupuesto(self):
-        return sorted(self.presupuesto.items(), key=(lambda x: x[1]))[:3]
+        return self.presupuesto, None, 3
 
     def update_producciones_anuales(self, registro):
         if(registro['title_year'] != ''):
@@ -144,29 +165,30 @@ class Reporte():
                 else:
                      self.producciones_anuales[key] = 1
 
-
+    @calcularData()
     def get_menor_producciones_anuales(self):
-        return sorted(self.producciones_anuales.items(), key=(lambda x: x[1]))[:1]
+        return self.producciones_anuales, None, 1
 
+    @calcularData()
     def get_mayor_producciones_anuales(self):
-        return sorted(self.producciones_anuales.items(), key=(lambda x: x[1]))[-1:]
+        return  self.producciones_anuales, -1, None
 
 
     def __repr__(self):
         #for item in self.directores:
         #    print "Director: %s Cantidad Producciones: %s" % (item, self.directores[item])
 
-        #print self.get_criticas()
-        #print self.get_mayor_duracion()
+        print self.get_criticas()
+        print self.get_mayor_duracion()
 
-        #print self.get_mayor_recaudacion()
-        #print self.get_menor_recaudacion()
+        print self.get_mayor_recaudacion()
+        print self.get_menor_recaudacion()
 
-        #print self.get_mayor_presupuesto()
-        #print self.get_menor_presupuesto()
+        print self.get_mayor_presupuesto()
+        print self.get_menor_presupuesto()
 
-        #print self.get_menor_producciones_anuales()
-        #print self.get_mayor_producciones_anuales()
+        print self.get_menor_producciones_anuales()
+        print self.get_mayor_producciones_anuales()
 
         return str(vars(self))
 
