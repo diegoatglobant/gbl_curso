@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Diego Linayo'
 import csv
+import time
 
 
 class Singleton(type):
@@ -43,18 +44,15 @@ class Procesador():
             self.reporte.update(registro)
 
 
-        print repr(self.reporte)
+        print (repr(self.reporte))
 
 
 class ClassBasedDecorator(object):
 
     def __init__(cls, func_to_decorate):
-        print "INIT ClassBasedDecorator"
         cls.func_to_decorate = func_to_decorate
 
     def __call__(cls, *args, **kwargs):
-        print "CALL ClassBasedDecorator"
-        print args
         return cls.func_to_decorate(object)
 
 
@@ -103,10 +101,14 @@ class Reporte():
 
     def update_directores(self, registro):
         key = unicode(registro['director_name'] , 'utf-8')
-        if (self.directores.has_key(key)):
-            self.directores[key] +=1
-        else:
-             self.directores[key] = 1
+        if(key != ''):
+            if (self.directores.has_key(key)):
+                self.directores[key]['total'] +=1
+                self.directores[key]['imdb_score'] += float(registro['imdb_score'])
+            else:
+                self.directores[key] = {}
+                self.directores[key]['total'] = 1
+                self.directores[key]['imdb_score'] = float(registro['imdb_score'])
 
 
     def update_menos_criticas(self, registro ):
@@ -171,29 +173,39 @@ class Reporte():
     def get_mayor_producciones_anuales(self):
         return  self.producciones_anuales, -1, None
 
+    @calcularData()
+    def get_director_mejor_reuputacion(self):
+        tmp = {}
+        for director_item in self.directores:
+            tmp[director_item] = self.directores[director_item]['imdb_score']/ self.directores[director_item]['total']
+
+        return tmp,-5, None
+
 
     def __repr__(self):
         #for item in self.directores:
-        #    print "Director: %s Cantidad Producciones: %s" % (item, self.directores[item])
+        #    print "Director: %s Cantidad Producciones: %s" % (item, self.directores[item]['total'])
 
-        print self.get_criticas()
-        print self.get_mayor_duracion()
+        # print self.get_director_mejor_reuputacion()
+        #print [[director_item] for director_item in ]
 
-        print self.get_mayor_recaudacion()
-        print self.get_menor_recaudacion()
-
-        print self.get_mayor_presupuesto()
-        print self.get_menor_presupuesto()
-
-        print self.get_menor_producciones_anuales()
-        print self.get_mayor_producciones_anuales()
+        # print self.get_criticas()
+        # print self.get_mayor_duracion()
+        #
+        # print self.get_mayor_recaudacion()
+        # print self.get_menor_recaudacion()
+        #
+        # print self.get_mayor_presupuesto()
+        # print self.get_menor_presupuesto()
+        #
+        # print self.get_menor_producciones_anuales()
+        # print self.get_mayor_producciones_anuales()
 
         return str(vars(self))
 
 
 
 if __name__ == '__main__':
-    import time
     start_time = time.time()
     procesador = Procesador('resources/movie_metadata.csv')
     procesador.calcular()
